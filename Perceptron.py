@@ -39,5 +39,3 @@ class Perceptron:
                 has_error = False
             iterations += 1
 
-        print(self.weights)
-

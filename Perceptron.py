@@ -21,21 +21,22 @@ class Perceptron:
 
         return 0
 
-    def train(self, patterns, targets, learning_rate, epochs):
+    def train(self, patterns, targets, learning_rate, epochs=10000):
         has_error = True
         iterations = 0
         error = None
         while has_error and iterations < epochs:
+            has_error = False
             for i, (inputs, target) in enumerate(zip(patterns, targets)):
-
                 error = target - self.test(inputs)
+
+                if error != 0:
+                    has_error = True
 
                 self.weights[0] = self.weights[0] + learning_rate * error
                 for j in range(len(self.weights)-1):
-
                     self.weights[j+1] = self.weights[j+1] + learning_rate * error * inputs[j]
 
-            if error == 0:
-                has_error = False
+
             iterations += 1
 

@@ -384,11 +384,9 @@ def exercise_three():
 
 
 def exercise_four():
-    perceptron_nand = Perceptron(2)
-    perceptron_or = Perceptron(2)
+    perceptron_xor = Perceptron(3)
 
-    target_nand = [1, 1, 1, 0]
-    target_or = [0, 1, 1, 1]
+    target_xor = [0, 1, 1, 0]
 
     patterns = [
         [0, 0],
@@ -399,12 +397,34 @@ def exercise_four():
 
     learning_rate = 0.2
 
-    perceptron_and = Perceptron(2)
+    perceptron_xor.train(patterns, target_xor, learning_rate)
+
+    print(perceptron_xor.test([0, 0]))
+    print(perceptron_xor.test([0, 1]))
+    print(perceptron_xor.test([1, 0]))
+    print(perceptron_xor.test([1, 1]))
+
+def exercise_five():
+    perceptron_nand = Perceptron(3)
+    perceptron_or = Perceptron(3)
+    perceptron_and = Perceptron(3)
+
+    target_nand = [1, 1, 1, 0]
+    target_or = [0, 1, 1, 1]
     target_and = [0, 0, 0, 1]
 
-    perceptron_nand.train(patterns, target_nand, learning_rate, 1000)
-    perceptron_and.train(patterns, target_and, learning_rate, 1000)
-    perceptron_or.train(patterns, target_or, learning_rate, 1000)
+    patterns = [
+        [0, 0],
+        [0, 1],
+        [1, 0],
+        [1, 1]
+    ]
+
+    learning_rate = 0.2
+
+    perceptron_nand.train(patterns, target_nand, learning_rate)
+    perceptron_or.train(patterns, target_or, learning_rate)
+    perceptron_and.train(patterns, target_and, learning_rate)
 
     and_inputs = []
 
@@ -412,13 +432,11 @@ def exercise_four():
     and_inputs.append(perceptron_or.test([0, 0]))
     print(perceptron_and.test(and_inputs))
 
-
     and_inputs = []
 
     and_inputs.append(perceptron_nand.test([0, 1]))
     and_inputs.append(perceptron_or.test([0, 1]))
     print(perceptron_and.test(and_inputs))
-
 
     and_inputs = []
 
@@ -434,7 +452,8 @@ def exercise_four():
 
 
 if __name__ == "__main__":
-# exercise_one()
-# exercise_two()
-# exercise_three()
+    #exercise_one()
+    #exercise_two()
+    #exercise_three()
     exercise_four()
+    #exercise_five()

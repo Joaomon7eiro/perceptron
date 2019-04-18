@@ -106,38 +106,59 @@ def exercise_two():
 
     perceptron.train(patterns, targets, learning_rate, 1000)
 
-    print(perceptron.test([
+    error = False
+
+    result = perceptron.test([
         1, 1, 1, 1, 1,
         1, 0, 1, 0, 1,
-        1, 0, 1, 0, 1,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
-    ]))
+        0, 0, 1, 0, 0,
+    ])
 
-    print(perceptron.test([
-        1, 1, 1, 1, 1,
-        0, 0, 1, 0, 0,
-        0, 0, 1, 0, 0,
-        0, 0, 1, 0, 0,
-        0, 0, 1, 0, 0,
-    ]))
+    if result != 0:
+        error = True
 
-    print(perceptron.test([
-        1, 1, 1, 1, 1,
-        1, 1, 0, 1, 1,
-        1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1,
-        1, 1, 0, 1, 1,
-    ]))
+    print(result)
 
-    print(perceptron.test([
+    result = perceptron.test([
+        1, 1, 1, 1, 1,
+        0, 0, 1, 0, 0,
+        0, 0, 1, 0, 0,
+        0, 0, 1, 0, 0,
+        0, 0, 1, 0, 0,
+    ])
+
+    if result != 0:
+        error = True
+
+    print(result)
+
+    result = perceptron.test([
+        1, 1, 1, 1, 1,
+        1, 0, 0, 0, 1,
+        1, 1, 1, 1, 1,
+        1, 0, 0, 0, 1,
+        1, 0, 0, 0, 1,
+    ])
+    if result != 1:
+        error = True
+
+    print(result)
+
+    result = perceptron.test([
         1, 1, 1, 1, 1,
         1, 0, 0, 0, 1,
         1, 0, 0, 0, 1,
         1, 1, 1, 1, 1,
         1, 0, 0, 0, 1,
-    ]))
+    ])
+    if result != 1:
+        error = True
 
+    print(result)
+
+    return error
 
 def exercise_three():
     #           a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
@@ -346,41 +367,80 @@ def exercise_three():
     perceptron4.train(patterns, targets4, learning_rate, 1000)
     perceptron5.train(patterns, targets5, learning_rate, 1000)
 
-    print(perceptron1.test([
+    error = False
+
+
+    result = perceptron1.test([
         1, 1, 1, 1, 1,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
-    ]))
-    print(perceptron2.test([
+    ])
+
+    if result != 1:
+        error = True
+
+
+    print(result)
+
+    result = perceptron2.test([
         1, 1, 1, 1, 1,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
-    ]))
-    print(perceptron3.test([
+    ])
+
+
+    if result != 0:
+        error = True
+
+    print(result)
+
+    result = perceptron3.test([
         1, 1, 1, 1, 1,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
-    ]))
-    print(perceptron4.test([
+    ])
+
+
+    if result != 0:
+        error = True
+
+    print(result)
+
+    result = perceptron4.test([
         1, 1, 1, 1, 1,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
-    ]))
-    print(perceptron5.test([
+    ])
+
+    if result != 1:
+        error = True
+
+    print(result)
+
+    result = perceptron5.test([
         1, 1, 1, 1, 1,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
         0, 0, 1, 0, 0,
-    ]))
+    ])
+
+
+    if result != 1:
+        error = True
+
+    print(result)
+
+    return error
+
 
 
 def exercise_four():
@@ -450,10 +510,40 @@ def exercise_five():
     and_inputs.append(perceptron_or.test([1, 1]))
     print(perceptron_and.test(and_inputs))
 
+def test_exercise_two():
+    count_error = 0
+    for i in range(10):
+        if exercise_two():
+            count_error += 1
+
+    print("Taxa de erro", count_error * 10, "%")
+
+def test_exercise_three():
+    count_error = 0
+    for i in range(10):
+        if exercise_three():
+            count_error += 1
+
+    print("Taxa de erro", count_error * 10, "%")
 
 if __name__ == "__main__":
-    #exercise_one()
-    #exercise_two()
-    #exercise_three()
+    print("Exercicio 1")
+    exercise_one()
+
+    print("Exercicio 2")
+    exercise_two()
+
+    print("Exercicio 3")
+    exercise_three()
+
+    print("Exercicio 4")
     exercise_four()
-    #exercise_five()
+
+    print("Exercicio 5")
+    exercise_five()
+
+    print("Teste Exercicio 2")
+    test_exercise_two()
+
+    print("Teste Exercicio 3")
+    test_exercise_three()

@@ -24,7 +24,6 @@ class Perceptron:
     def train(self, patterns, targets, learning_rate, epochs=10000):
         has_error = True
         iterations = 0
-        error = None
         while has_error and iterations < epochs:
             has_error = False
             for i, (inputs, target) in enumerate(zip(patterns, targets)):
@@ -36,7 +35,6 @@ class Perceptron:
                 self.weights[0] = self.weights[0] + learning_rate * error
                 for j in range(len(self.weights)-1):
                     self.weights[j+1] = self.weights[j+1] + learning_rate * error * inputs[j]
-
 
             iterations += 1
 
